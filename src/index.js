@@ -16,13 +16,13 @@ const timer = {
   idTimer: null,
   targetDate: new Date(),
   start() {
-    refs.startBtn.disabled = true;
-
     this.targetDate = new Date(refs.dateCalendar.value);
     if (new Date() > this.targetDate) {
       alert('Установленная дата меньше текущей');
       return;
     }
+
+    refs.startBtn.disabled = true;
 
     //обновим показания таймера, чтобы не ждать 1 сек
     setTimer();
