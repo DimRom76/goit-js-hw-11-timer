@@ -10,6 +10,7 @@ const refs = {
   startBtn: document.querySelector('button[data-action-start]'),
   stopBtn: document.querySelector('button[data-action-stop]'),
   dateCalendar: document.querySelector('[data-calendar]'),
+  timeIsOver: document.querySelector('.disable'),
 };
 
 const timer = {
@@ -21,6 +22,8 @@ const timer = {
       alert('Установленная дата меньше текущей');
       return;
     }
+
+    refs.timeIsOver.classList.add('disable');
 
     refs.startBtn.disabled = true;
 
@@ -53,6 +56,11 @@ function setTimer() {
   refs.hours.textContent = String(hours).padStart(2, '0');
   refs.mins.textContent = String(mins).padStart(2, '0');
   refs.secs.textContent = String(secs).padStart(2, '0');
+
+  if (!days & !hours & !mins & !secs) {
+    timer.stop();
+    refs.timeIsOver.classList.remove('disable');
+  }
 }
 
 function getEndDay() {
